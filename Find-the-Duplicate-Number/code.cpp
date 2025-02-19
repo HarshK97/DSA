@@ -6,15 +6,15 @@ using namespace std;
 
 class Solution {
 public:
-  bool containsDuplicate(vector<int> &nums) {
+  int findDuplicate(vector<int> &nums) {
     unordered_set<int> seen;
     for (int num : nums) {
       if (seen.count(num)) {
-        return true;
+        return num;
       }
       seen.insert(num);
     }
-    return false;
+    return -1;
   }
 };
 
@@ -27,7 +27,7 @@ int main() {
 
   while (t--) {
     int n;
-    cout << "Enter size of array: ";
+    cout << "Enter size of array (n+1 elements): ";
     cin >> n;
     vector<int> nums(n);
 
@@ -36,11 +36,7 @@ int main() {
       cin >> nums[i];
     }
 
-    bool result = sol.containsDuplicate(nums);
-    if (result)
-      cout << "Contains duplicate: YES" << endl;
-    else
-      cout << "Contains duplicate: NO" << endl;
+    cout << "Duplicate number: " << sol.findDuplicate(nums) << endl;
   }
 
   return 0;

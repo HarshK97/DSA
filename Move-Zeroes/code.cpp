@@ -1,19 +1,22 @@
 #include <iostream>
 #include <vector>
+
 using namespace std;
 
 class Solution {
 public:
-  vector<int> getConcatenation(vector<int> &nums) {
-    int n = nums.size();
-    vector<int> ans(2 * n);
+  void moveZeroes(vector<int> &nums) {
+    int insertPos = 0;
 
-    for (int i = 0; i < n; i++) {
-      ans[i] = nums[i];
-      ans[i + n] = nums[i];
+    for (int i = 0; i < nums.size(); i++) {
+      if (nums[i] != 0) {
+        nums[insertPos++] = nums[i];
+      }
     }
 
-    return ans;
+    while (insertPos < nums.size()) {
+      nums[insertPos++] = 0;
+    }
   }
 };
 
@@ -35,13 +38,15 @@ int main() {
       cin >> nums[i];
     }
 
-    vector<int> result = sol.getConcatenation(nums);
+    sol.moveZeroes(nums);
 
-    cout << "Concatenated Array: ";
-    for (int num : result) {
+    cout << "Array after moving zeroes: ";
+    for (int num : nums) {
       cout << num << " ";
     }
-    cout << "\n";
+    cout << endl;
   }
+
   return 0;
 }
+
